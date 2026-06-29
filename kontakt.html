@@ -26,7 +26,6 @@
         <p><strong>Adresa:</strong> Slavka Manojlovića 10, 11400 Mladenovac</p>
         <p><strong>Telefon:</strong> 069/674-172</p>
         <p><strong>Radno vreme:</strong> Ponedeljak - Subota: 08:00 - 20:00h</p>
-        <!-- Uneta tvoja omiljena topla čokoladna braon boja za napomenu -->
         <p style="color: #5c3d2e; font-weight: 500;"><strong>Napomena:</strong> Svaki termin van normalnog radnog vremena (pre 08:00h i od 20:00h) naplaćuje se po posebnoj tarifi.</p>
 
         <div class="lokacija-kontejner">
@@ -34,24 +33,25 @@
                 <p>
                     <strong>Naša adresa za navigaciju:</strong><br> Slavka Manojlovića 10, Mladenovac
                 </p>
-                <a href="https://google.com" target="_blank" rel="noopener noreferrer">
+                <!-- ISPRAVLJENO: Ubačen tvoj najnoviji, puni link koji garantovano otvara tačnu lokaciju na mapi -->
+                <a href="https://www.google.com/maps/place/Vanja+Beauty+Art/@44.4478957,20.6891355,17z/data=!3m1!4b1!4m6!3m5!1s0x4750b1bddf6f95ed:0x6d266ee59809ab94!8m2!3d44.4478957!4d20.6891355!16s%2Fg%2F11p66tbqq1?entry=ttu" target="_blank" rel="noopener noreferrer">
                     📍 Beauty Art by Vanja Dmitric - Google Maps
                 </a>
             </div>
         </div>
 
         <h3>Upit za termin</h3>
-        <!-- PAŽNJA: Ne zaboravi da umesto UPISI_SVOJ_KOD upišeš onih par slova sa tvog Formspree-a -->
-        <form id="kontaktForma" action="https://formspree.io" method="POST">
+        <!-- PAŽNJA: Ponovo upiši svoj Formspree kod umesto teksta UPISI_SVOJ_KOD -->
+         <form id="kontaktForma" action="https://formspree.io/f/xbdvyvpl" method="POST">
             
+        
             <label for="ime">Ime i prezime:</label>
             <input type="text" id="ime" name="Ime i Prezime" required 
                    pattern="[^0-9]*" title="Ime i prezime ne sme sadržati brojeve.">
 
             <label for="telefon">Telefon:</label>
-            <!-- ISPRAVLJENO: Dodat uslov {9,} što primorava klijenta na unos od najmanje 9 cifara -->
             <input type="tel" id="telefon" name="Broj Telefona" required 
-                   pattern="[0-9\/+-]{9,}" title="Telefon mora sadržati samo brojeve, znakove / + - i imati najmanje 9 cifara.">
+                   pattern="[0-9\/+-]{9,}" title="Telefon must contain only numbers and be at least 9 characters long.">
 
             <label for="usluga">Izaberite uslugu:</label>
             <select id="usluga" name="Izabrana Usluga" required>

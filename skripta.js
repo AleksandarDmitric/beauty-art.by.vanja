@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         glavniSadrzaj.classList.add('vidljivo');
     }
 
-    // 3. ISPRAVLJENO: Automatsko zaključavanje današnjeg i svih prošlih datuma
+    // 3. Automatsko zaključavanje današnjeg i svih prošlih datuma
     var kalendar = document.getElementById('datum');
     if (kalendar) {
         var sutra = new Date();
@@ -36,18 +36,18 @@ document.addEventListener('DOMContentLoaded', function() {
         kalendar.setAttribute('min', formatiranSutrasnjiDatum);
     }
 
-    // 4. Logika slanja forme i prikazivanje tvoje prilagođene poruke
+    // 4. Logika slanja forme, provere unosa i slanje u pozadini
     var forma = document.getElementById('kontaktForma');
     if (forma) {
         forma.addEventListener('submit', function(e) {
-            e.preventDefault(); // Stopiramo standardno preusmeravanje
+            e.preventDefault(); // Zaustavljamo preusmeravanje na Formspree sajt
 
             var ime = document.getElementById('ime').value;
             var telefon = document.getElementById('telefon').value;
             var datumVrednost = document.getElementById('datum').value;
             var vremeVrednost = document.getElementById('izabranoVreme').value;
 
-            // Bezbednosne provere unosa
+            // Bezbednosne provere unosa na klijentskoj strani
             if (/\d/.test(ime)) {
                 alert('Greška: U polje za ime i prezime ne smete unositi brojeve.');
                 return;
@@ -56,26 +56,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Greška: U polje za broj telefona ne smete unositi slova.');
                 return;
             }
+            if (telefon.trim().length < 9) {
+                alert('Greška: Broj telefona mora imati najmanje 9 cifara.');
+                return;
+            }
             if (!vremeVrednost) {
                 alert('Molimo vas da izaberete jedan od ponuđenih termina za vreme.');
                 return;
             }
 
-            // Kreiramo objekat sa podacima iz forme
+            // Kreiramo objekat sa podacima iz forme za slanje u pozadini
             var data = new FormData(forma);
 
-            // ISPRAVLJENO: Pravilno pakovanje datuma u format DD.MM.YYYY. pre slanja na Formspree
+            // TAČNO ISPRAVLJENO: Razbijanje GGGG-MM-DD i slaganje u DD.MM.GGGG.
             if (datumVrednost) {
-                var deloviDatuma = datumVrednost.split('-'); 
+                var deloviDatuma = datumVrednost.split('-'); // Deli npr. "2026-06-30"
                 var srpskiFormatDatuma = deloviDatuma[2] + '.' + deloviDatuma[1] + '.' + deloviDatuma[0] + '.';
-                data.set('Izabrani Datum', srpskiFormatDatuma); 
+                data.set('Izabrani Datum', srpskiFormatDatuma); // Upisuje "30.06.2026." u mejl
             }
 
             var dugme = document.getElementById('dugmeZaSlanje');
             dugme.textContent = 'Slanje...';
             dugme.disabled = true;
 
-            // Šaljemo podatke na Formspree preko AJAX-a
+            // Šaljemo podatke na Formspree preko AJAX-a (u pozadini)
             fetch(forma.action, {
                 method: forma.method,
                 body: data,

@@ -329,46 +329,45 @@ button[type="submit"]:active {
 }
 
 /* ==========================================================================
-   10. PODNOŽJE (FOOTER) - ISPRAVLJENO ZATVARANJE KOMENTARA
+   10. PODNOŽJE (FOOTER)
    ========================================================================== */
 footer {
     text-align: center;
-    padding: 30px 20px;
-    margin-top: 60px;
-    font-size: 0.85rem;
-    color: #888;
-    letter-spacing: 0.5px;
+    padding: 40px 20px;
     background-color: #fff;
     border-top: 1px solid #f5e6e8;
+    margin-top: 60px;
 }
 
-/* ==========================================================================
-   11. RESPONSIVE PRILAGOĐAVANJE (MEDIAS)
-   ========================================================================== */
-@media (max-width: 768px) {
-    main {
-        margin: 20px 15px;
-        padding: 25px;
-    }
-    header h1 {
-        font-size: 2.1rem;
-    }
-    nav a {
-        margin: 0 10px;
-        font-size: 0.85rem;
-    }
+footer p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 15px;
 }
 
-@media (max-width: 600px) {
-    .vremenski-slotovi {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .slika-salona {
-        height: auto;
-    }
-    .cenovnik li {
-        flex-direction: column;
-        gap: 6px;
-        align-items: flex-start;
-    }
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 15px;
+}
+
+.social-icon {
+    font-size: 26px;
+    color: #bc8a5f; /* Elegantna braon-zlatna boja iz h1 naslova */
+    transition: transform 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px); /* Blago iskakanje na gore */
+}
+
+.social-icon[aria-label="Facebook"]:hover {
+    color: #1877F2; /* Facebook plava */
+}
+
+.social-icon[aria-label="Instagram"]:hover {
+    color: #E1306C; /* Instagram roze */
 }
